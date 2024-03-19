@@ -2,6 +2,9 @@ package chapter2.item2.telescopingconstructor;
 
 // Telescoping constructor patter - does not scale well!
 // we are declaring variables as finals since we want our class to be immutable for multi-threaded environment
+
+// If there were 20 optional parameters then we would have to create 20 constructors and that would make our
+// code hard to read and complex. That's why telescoping constructor pattern does not scale well
 public class NutritionFacts {
 	private final int servingSize;        // (mL) 			required
 	private final int servings;        // (per container) 	required
