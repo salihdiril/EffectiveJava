@@ -10,8 +10,8 @@ import chapter2.item5.database.utils.DatabaseManager;
 
 public class CustomerService {
 	public void createCustomerTable() {
-		String createTableSql = "CREATE TABLE IF NOT EXISTS customers (" + "id SERIAL PRIMARY KEY, " + "email VARCHAR(100), " + "first_name VARCHAR(50), "
-				+ "last_name VARCHAR(50), " + "company VARCHAR(255), " + "created_at TIMESTAMP, " + "country VARCHAR(50))";
+		String createTableSql = "CREATE TABLE IF NOT EXISTS customers (" + "id SERIAL PRIMARY KEY, " + "email VARCHAR(100), " + "first_name VARCHAR(100), "
+				+ "last_name VARCHAR(100), " + "company VARCHAR(255), " + "created_at TIMESTAMP, " + "country VARCHAR(100))";
 		try {
 			DatabaseManager.executeUpdate(createTableSql);
 			System.out.println("Table created successfully.");

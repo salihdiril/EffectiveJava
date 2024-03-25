@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import chapter2.item5.database.model.Customer;
 
@@ -39,7 +42,17 @@ public class DatabaseManager {
 		stmt.setString(2, customer.getFirstName());
 		stmt.setString(3, customer.getLastName());
 		stmt.setString(4, customer.getCompany());
-		stmt.setString(5, customer.getCreatedAt());
+
+		// We need to define the format of our JSON file's created_at value's timestamp
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+		// Parse the created_at timestamp string into a LocalDateTime object
+		LocalDateTime createdAtDateTime = LocalDateTime.parse(customer.getCreatedAt(), formatter);
+
+		// Convert the LocalDateTime object to a java.sql.Timestamp
+		Timestamp createdAtTimestamp = Timestamp.valueOf(createdAtDateTime);
+
+		stmt.setTimestamp(5, createdAtTimestamp);
 		stmt.setString(6, customer.getCountry());
 
 		stmt.executeUpdate();
